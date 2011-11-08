@@ -169,7 +169,9 @@
 						cloneWidth + config.extraSpace : config.minWidth,
 					currentWidth = el.width();
 
-				newWidth = Math.min(newWidth, config.maxWidth);
+        if (config.maxWidth !== 'infinite') {
+  				newWidth = Math.min(newWidth, config.maxWidth);
+        }
 
 				if (
 					(newWidth < currentWidth && newWidth >= config.minWidth) ||
@@ -205,7 +207,7 @@
 
 			this.previousScrollTop = scrollTop;
 			
-			if (config.maxHeight != 'infinite' && scrollTop + config.extraSpace >= config.maxHeight) {
+			if (config.maxHeight !== 'infinite' && scrollTop + config.extraSpace >= config.maxHeight) {
 				el.css('overflowY', '');
 				scrollTop = config.maxHeight;
 				immediate = true;
