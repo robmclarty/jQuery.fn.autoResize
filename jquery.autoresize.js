@@ -173,7 +173,7 @@
 
 				if (
 					(newWidth < currentWidth && newWidth >= config.minWidth) ||
-					(newWidth >= config.minWidth && newWidth <= config.maxWidth)
+					(newWidth >= config.minWidth && (config.maxWidth === 'infinite' || newWidth <= config.maxWidth))
 				) {
 
 					config.onResize.call(el);
@@ -205,7 +205,7 @@
 
 			this.previousScrollTop = scrollTop;
 			
-			if (scrollTop + config.extraSpace >= config.maxHeight) {
+			if (config.maxHeight != 'infinite' && scrollTop + config.extraSpace >= config.maxHeight) {
 				el.css('overflowY', '');
 				scrollTop = config.maxHeight;
 				immediate = true;
